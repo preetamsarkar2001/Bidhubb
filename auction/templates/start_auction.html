@@ -1,0 +1,86 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<style>
+    div.ex1 {
+  width: 100%;
+  height: 300px;
+  overflow: scroll;
+}
+
+</style>
+
+<div class="container" style="width:100%;margin-top:2%;margin-bottom:4%;border:1px solid grey;border-radius:4px">
+    <center><h4 style="margin-top:4%">Session Room</h4></center>
+    <div align="right">
+        <h4 style="color:red"><i class="fa fa-clock-o"></i> Start Time : {{pro.aucted_product.product.session.time}} &  End Time : {{end2}}</h4></div>
+<hr />
+    <div class="row" style="padding:20px">
+        <div class="col-md-7">
+            <div class="row" style="padding:20px">
+        <div class="col-md-6">
+            <img src="{{pro.aucted_product.product.images.url}}" style="width:100%">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Product Name : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold"> {{pro.aucted_product.product.name}}</span><hr>
+                </div>
+
+                <div class="col-md-6">
+                     <span>Product Seller : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold"> {{pro.aucted_product.user.user.username}}</span><hr>
+                </div>
+                <div class="col-md-6">
+                     <span>Minium Price : </span>
+                </div>
+                <div class="col-md-6">
+                     <span style="font-weight:bold"> &#8377;{{pro.aucted_product.product.min_price}}.00 /-</span><hr>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label style="font-weight:bold;color:green">Enter New Price</label>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-8">
+
+                        <input type="text" class="form-control" placeholder="Enter New Price" id="exampleInputPassword1" name="price">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div></div></div></div>
+            <div class="col-md-5 ex1">
+               <h5 align="center">All Bidder</h5>
+                {% for i in pro2 %}
+                <div class="row">
+                    <div class="col-md-3"><img src="{{i.user.image.url}}" style="height:60px;width:96%"></div>
+                    <div class="col-md-9">{{i.user.user.username}}
+                    <h6>Current Price : &#8377; {{i.new_price}}.00 /-</h6></div>
+                </div><hr>
+                {% endfor %}
+            </div>
+    </div></div>
+{% if terror == "expire" %}
+<script>
+    alert('Session Expired');
+    window.location="{% url 'view_auction' pro.id %}";
+</script>
+{% endif %}
+
+{% if me %}
+<script>
+    alert('You have not Participated');
+    window.location="{% url 'view_auction' 0 %}";
+</script>
+{% endif %}
+{% endblock %}

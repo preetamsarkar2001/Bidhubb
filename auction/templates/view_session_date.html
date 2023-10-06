@@ -1,0 +1,38 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+ <div class="container" style="background:white">
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">View All Session Date</h2></center><hr>
+<div class="container-fluid" style="margin-top:5%">
+</div>
+
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Session Date</th>
+    <th style="width:250px">Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in date1 %}
+  <tr>
+      <td>{{forloop.counter}}</td>
+    <td>{{i.date}}</td>
+      <td><a href="{% url 'edit_session_date' i.id %}"> <i style="font-size:30px;color:green;margin-left:6%" class="fa fa-edit"></i></a>
+          <a href="{% url 'delete_session_date' i.id %}">  <i style="font-size:30px;color:red;margin-left:12%" class="fa fa-trash-o" onclick="return confirm('Are you sure?')"></i></a></td>
+  </tr>
+   {% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

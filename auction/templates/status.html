@@ -1,0 +1,32 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+{% load static %}
+<div class="container" style="background:white;padding:20px;margin-top:4%">
+    <h2 style="margin-top:20px;color:red" align="center">Change Status</h2><hr>
+
+<div align="left" class="container-fluid" style="width:70%;margin-top:5%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group col-md-12">
+    <label for="exampleInputEmail1">ID</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="book" value="{{pro.id}}" readonly>
+  </div>
+  <div class="form-group col-md-12">
+      <label for="inputState">Status</label>
+      <select id="inputState" class="form-control" name="stat">
+        <option value="Accept">Accept</option>
+        <option value="Reject">Reject</option>
+      </select>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+{% if terror %}
+<script>
+    alert('Assigned successfully');
+    window.location = "{% url 'new_product' %}";
+</script>
+{% endif %}
+
+{% endblock %}

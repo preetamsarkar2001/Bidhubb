@@ -1,0 +1,38 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+{% load static %}
+<div class="container" style="background:white">
+    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:20px" align="center">Add Session Time</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:6%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="col-md-12">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Session Date</label>
+    <select class="form-control" id="exampleFormControlSelect1"name="date">
+      {% for i in sed %}
+        <option value="{{i.date}}">{{i.date}}</option>
+      {% endfor %}
+    </select>
+     </div></div>
+    <div class="form-group col-md-12">
+    <label for="exampleInputPassword1">Session Time</label>
+    <input type="time" class="form-control" id="exampleInputPassword1" name="time">
+</div></div>
+
+    <div align="center">
+  <button type="submit" style="width:40%;margin-bottom:5%;" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</div>
+</div>
+
+{% if error %}
+<script>
+    alert('Session Time Addedd Successfully');
+    window.location = "{% url 'view_session_time' %}";
+</script>
+{% endif %}
+{% endblock %}

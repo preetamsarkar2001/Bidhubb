@@ -1,0 +1,29 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+{% load static %}
+<div class="container" style="background:white">
+    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:20px" align="center">Add Category</h2><hr>
+
+<div align="left" class="container-fluid" style="width:70%;margin-top:5%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+
+    <div class="form-group col-md-12">
+    <label for="exampleInputPassword1">Category Name</label>
+    <input type="text" class="form-control" placeholder="Eneter Category" id="exampleInputPassword1" name="cat">
+</div></div>
+
+<div align="center">
+  <button type="submit" class="btn btn-primary" style=";width:40%;margin-bottom:5%">Submit</button></div>
+</form>
+</div>
+</div>
+
+{% if error %}
+<script>
+    alert('1 Category Added Successfully');
+    window.location = "{% url 'view_category' %}";
+</script>
+{% endif %}
+{% endblock %}

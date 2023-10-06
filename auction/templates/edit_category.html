@@ -1,0 +1,29 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+{% load static %}
+<div class="container" style="background:white">
+    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:20px" align="center">Update Category</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+
+    <div class="form-group col-md-12">
+    <label for="exampleInputPassword1">Category Name</label>
+    <input type="text" class="form-control" value="{{cat.name}}" id="exampleInputPassword1" name="cat">
+</div></div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+{% if error %}
+<script>
+    alert('Category Updated Successfully');
+    window.location = "{% url 'view_category' %}";
+</script>
+{% endif %}
+{% endblock %}

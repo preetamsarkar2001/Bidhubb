@@ -1,0 +1,49 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+ <div class="container" style="background:white">
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">All Bidder</h2></center><hr>
+<div class="container-fluid" style="margin-top:5%">
+</div>
+
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Full Name</th>
+    <th>Image</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Birth</th>
+    <th>Membership</th>
+    <th>Payment</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in prod %}
+  <tr>
+    <td>{{i.user.first_name}}{{i.user.last_name}}</td>
+    <td><img src="{{i.image.url}}" style="width:90px"> </td>
+    <td>{{i.address}}</td>
+    <td>{{i.contact}}</td>
+    <td>{{i.dob}}</td>
+    {% if i.membership.fee == "Paid" %}
+    <td style="color:green">Granted</td>
+    {% else %}
+    <td style="color:red">Not Granted</td>
+    {% endif %}
+    <td>{{i.membership}}</td>
+  </tr>
+{% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

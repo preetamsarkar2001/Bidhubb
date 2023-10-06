@@ -1,0 +1,128 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="container" style="background:white">
+    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:20px" align="center">Add Product</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:6%">
+<form method="post" action="" id="indexForm" enctype="multipart/form-data" data-courses-url="{% url 'ajax_load_courses' %}" data-courses-url1="{% url 'ajax_load_courses1' %}">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Category</label>
+    <select class="form-control" id="programming" name="cat">
+        <option value="">---select Category---</option>
+            {% for i in cat %}
+            <option value="{{i.id}}">{{i.name}}</option>
+            {% endfor %}
+    </select>
+     </div>
+        </div>
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Sub-Category</label>
+    <select class="form-control" id="courses" name="scat">
+
+    </select>
+     </div>
+        </div>
+    </div>
+
+        <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="exampleInputPassword1">Product name</label>
+    <input type="text" class="form-control" placeholder="Enter product Name" id="exampleInputPassword1" name="p_name">
+</div>
+            <div class="form-group col-md-6">
+    <label for="exampleInputPassword1">Minimum Price</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" name="price">
+</div></div>
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+    <label for="exampleInputPassword1">Product Image</label>
+    <input type="file" class="form-control" id="exampleInputPassword1" name="image">
+</div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Session Date</label>
+    <select class="form-control" id="programming1" name="date">
+        <option value="">---select Session Date---</option>
+            {% for i in sed %}
+            <option value="{{i.id}}">{{i.date}}</option>
+            {% endfor %}
+    </select>
+     </div>
+        </div>
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Session Time</label>
+    <select class="form-control" id="courses1" name="time">
+
+    </select>
+     </div>
+        </div>
+    </div>
+
+    <div align="center">
+  <button type="submit" style="width:100%;margin-bottom:5%;" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</div>
+</div>
+{% if terror %}
+<script>
+    alert('1 new Product Added Successfully');
+    window.location = "{% url 'all_product' %}";
+</script>
+{% endif %}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#programming").change(function () {
+      var url = $("#indexForm").attr("data-courses-url");  // get the url of the `load_courses` view
+      var programmingId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'programming': programmingId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#courses").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
+<script>
+    $("#programming1").change(function () {
+      var url = $("#indexForm").attr("data-courses-url1");  // get the url of the `load_courses` view
+      var programmingId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'programming': programmingId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#courses1").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
+
+{% endblock %}

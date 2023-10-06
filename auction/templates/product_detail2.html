@@ -1,0 +1,70 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+{% load static %}
+
+<div align="left" class="container" style="background:white;width:80%;margin-top:2%;margin-bottom:4%;border:1px solid grey;border-radius:4px">
+    <center><h4 style="margin:4%">Product Details</h4></center><hr>
+    <div class="row" style="padding:20px">
+        <div class="col-md-6">
+            <img src="{{pro.images.url}}" style="width:100%">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Product Name : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold"> {{pro.name}}</span><hr>
+                </div>
+
+                <div class="col-md-6">
+                     <span>Product Category : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold"> {{pro.category}}</span><hr>
+                </div>
+                <div class="col-md-6">
+                     <span>Product Seller : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold"> {{pro1.user.user.username}}</span><hr>
+                </div>
+                <div class="col-md-6">
+                     <span>Minium Price : </span>
+                </div>
+                <div class="col-md-6">
+                     <span style="font-weight:bold"> &#8377;{{pro.min_price}}.00 /-</span><hr>
+                </div>
+            </div>
+      <div align="center"><p style="color:blue">
+            <i class="fa fa-clock-o"></i> Auction Session info</p></div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span>Start Auction Session : </span>
+                </div>
+                <div class="col-md-6">
+                    <span style="font-weight:bold;color:blue"> {{pro.session.time}}</span>
+                </div>
+                <div class="col-md-6">
+                    <span>End Auction Session : </span></div>
+
+                <div class="col-md-6">
+                    <span style="font-weight:bold;color:blue"> {{end2}}</span>
+                </div>
+                <div class="col-md-6">
+                      <span> Session Date : </span>
+                </div>
+
+                <div class="col-md-6">
+                    <span style="font-weight:bold;color:blue"> {{pro.session.date.date}}</span>
+                </div>
+
+            </div>
+
+       <br />
+            <a href="{% url 'status' pro.id %}" ><button class="btn btn-primary">Assign Status</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

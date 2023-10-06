@@ -1,0 +1,32 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+ <div class="container" style="background:white">
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">Select Payment Mode</h2></center><hr>
+<div class="container-fluid" style="margin-top:5%">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'google_pay' pid %}"> <img src="{% static 'images/phone_pay.png' %}" style="height:150px;border:1px solid grey;border-radius:8px;width:100%"></a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'google_pay' pid %}"><img src="{% static 'images/google_pay.jpg' %}" style="height:150px;border:1px solid grey;border-radius:8px;width:100%"></a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'google_pay' pid %}"><img src="{% static 'images/paytm.jpg' %}" style="height:150px;border:1px solid grey;border-radius:8px;width:100%"></a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'payment2' pid %}"><img src="{% static 'images/credit_card.png' %}" style="height:150px;border:1px solid grey;border-radius:8px;width:100%"></a>
+        </div>
+    </div>
+
+</div>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

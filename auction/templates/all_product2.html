@@ -1,0 +1,48 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+ <div class="container" style="background:white">
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">All New Product</h2></center><hr>
+<div class="container-fluid" style="margin-top:5%">
+</div>
+
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Product Name</th>
+    <th>Image</th>
+    <th>Session Date</th>
+    <th>Session Time</th>
+    <th>Seller</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in prod %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{i.product.name}}</td>
+    <td><img src="{{i.product.images.url}}" style="width:100px;height:100px"></td>
+    <td>{{i.product.session.date.date}}</td>
+    <td>{{i.product.session.time}}</td>
+    <td>{{i.user.user.username}}</td>
+    <td>{{i.product.status.status}}</td>
+    <td><a href="">  <i style="font-size:30px;color:red;margin-left:12%" class="fa fa-trash-o" onclick="return confirm('Are you sure?')"></i></a></td>
+  </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

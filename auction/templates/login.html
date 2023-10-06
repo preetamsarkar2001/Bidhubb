@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error == "pat" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url "profile1" %}');
+</script>
+{% endif %}
+{% if error == "pat1" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url "profile1" %}');
+</script>
+{% endif %}
+{% if error == "not" %}
+<script>
+    alert('Username & Password are not Matching');
+</script>
+{% endif %}
+
+
+<div class="container-fluid" style="width:70%;margin-top:7%">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-center" >NEW CUSTOMERS</h2><hr>
+      <p>By creating an account with our store,we will be able to move through the
+      checkout process faster,store multiple shipping addresses,view and track your orders in your
+        account and more.</p>
+  <button class="btn btn-danger"style="color:white;margin-top:4%"><a href="{% url 'signup' %}" style="color:white">CREATE AN ACCOUNT</a></button>
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-center">Login Form</h2><hr>
+
+      <form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
+  </div>
+  <button type="submit" class="btn btn-danger" style="margin-top:2%">SUBMIT</button>
+</form>
+    </div>
+  </div>
+
+</div>
+</div>
+
+{% endblock %}

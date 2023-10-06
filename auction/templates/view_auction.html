@@ -1,0 +1,62 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container" style="width:100%;background:white">
+      <center><h2 style="padding-top:3px ;margin-top:5%;font-weight:bold;font-family : 'Monotype Corsiva' ;color:red">View Product</h2></center>
+<hr>
+ <div class="container-fluid">
+   	<h1 class="text-center mt-5 mb-5">
+                    <center><h3 align="center" style="color:red">{{message1}}</h3></center>
+   	</h1>
+   		<div class="row" style="margin-bottom:5%">
+			{% for j in pro %}
+            {% if j.status.status == "Accept" or j.status.status == "Done" %}
+				<div class="col-md-3">
+                    <div style="padding:px;width:80%;margin-bottom:5%;border-radius:3%;border:1px solid grey">
+					<center>
+                        <button class="btn btn-success" style="width:70%">
+                            <i style="color:yellow;font-size:20px" class="fa fa-clock-o"></i> {{j.session.time}}
+                        </button>
+                        <img src="{{j.images.url}}" style="margin-top:1%;width:170px;height:170px;float:center"></center>
+   						<div style="padding:10px">
+   						<h5 style="color:red;font-weight:bold"> {{j.name}} </h5>
+                            <div class="row">
+                            <div class="col-md-7"><span style="font-weight:bold;color:blue">&#8377; : {{j.min_price}}</span>
+                            </div><div class="col-md-5" align="right"><span style="font-weight:bold;color:grey">
+                                <a href="{% url 'product_detail' j.id %}"> <i class="fa fa-info"></i> Detail</a></span></div>
+                            </div></div>
+                        {% if j.temp == 0 %}
+                                <form action="{% url 'view_auction' j.id %}" method="post">
+								{% csrf_token %}
+								<button type="submit" class="btn btn-primary" style="width:100%" onclick="return confirm('Are you sure?')">Participate</button>
+							</form>
+                        {% else %}
+                        {% if j.temp == 2 %}
+                        <a href="{% url 'start_auction' j.id %}" ><button type="submit" class="btn btn-danger" style="width:100%">Currently in Bid =</button></a>
+                        {% else %}
+                         {% if j.temp == 3 %}
+                             <a href="{% url 'winner1' j.id %}" ><button type="submit" class="btn btn-danger" style="width:100%">
+                                 <i class="fa fa-user"></i> winner announced</button></a>
+                        {% else %}
+                        <div align="center">
+                 				<p style="color:red">Already Participated</p>
+                        </div>
+{% endif %}
+{% endif %}
+{% endif %}
+   				</div></div>
+            {% endif %}
+			{% endfor %}
+
+	</div>
+ </div>
+
+      </div>
+{% if terror %}
+<script>
+    alert('Participation successfull');
+    window.location = "{% url 'view_auction' 0 %}";
+</script>
+{% endif %}
+{% endblock %}

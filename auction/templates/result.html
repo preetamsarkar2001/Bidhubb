@@ -1,0 +1,56 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+ <div class="container" style="background:white">
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">Result of Participation</h2></center><hr>
+<div class="container-fluid" style="margin-top:5%">
+</div>
+
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Product Name</th>
+    <th>Seller Name</th>
+    <th>Session Date</th>
+    <th>Session Time</th>
+    <th>Result</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in pro %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{i.aucted_product.product.name}}</td>
+    <td>{{i.aucted_product.user.user.username}}</td>
+    <td>{{i.aucted_product.product.session.date.date}}</td>
+    <td>{{i.aucted_product.product.session.time}}</td>
+      {% if i.result.result == "Winner" %}
+      <td><a href="{% url 'winner' i.id %}"><button class="btn btn-primary">
+      Winner Announced</button></a></td>
+      {% else %}
+      {% if i.result.result == "Defeat" %}
+        <td style="color:red">Defeat</td>
+      {% else %}
+      {% if i.result.result == "notproper" %}
+        <td style="color:pink">Bidding not proper</td>
+      {% else %}
+        <td style="color:green">Start on time</td>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+  </tr>
+   {% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E
+ ; font-weight : bold;margin-top:2%">About Us</h2></center><hr>
+<section id="about">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6">
+                         <img src="{% static 'images/about_auction.jpg' %}" style="height:350px;width:97%">
+                    </div>
+                         <div class="col-md-6">
+                         <p style="color:blue;font-size:22px;font-family:cursive"> Auction, the buying and selling of real and personal property through open public bidding. The traditional auction process involves a succession of increasing bids or offers by potential purchasers until the highest (and final) bid is accepted by the auctioneer (who is usually an agent of the seller). By contrast, in a so-called Dutch auction, the seller offers property at successively lower prices until one of his offers is accepted or until the price drops so low as to force the withdrawal of the offered property.
+</p>
+                    </div>
+
+
+               </div>
+          </div>
+     </section>
+{% endblock %}

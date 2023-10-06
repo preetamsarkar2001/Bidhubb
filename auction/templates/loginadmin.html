@@ -1,0 +1,47 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error == "yes" %}
+<script>
+    alert('logged in successfully');
+    window.location=('{% url "admin_home" %}');
+</script>
+{% endif %}
+{% if error == "not" %}
+<script>
+    alert('Username & Password are not Matching');
+</script>
+{% endif %}
+
+<div class="container">
+<div class="container-fluid" style="border-radius:10px;width:70%;margin-top:6%;background-color:whitesmoke">
+
+  <div class="row">
+    <div class="col-md-6">
+    <img src="{% static 'images/auction6.jpg' %}" style="width:100%;height:600px">
+    </div>
+    <div class="col-md-6">
+
+      <img src="{% static 'images/login.png' %}" style="margin-top:2%;width:40%;margin-left:29%">
+<h3 align="center" style="margin-top:4%">Sign In</h3>
+      <p align="center">Enter Your Email Address and Password for access Admin panel</p>
+      <form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1" style="font-weight:bold">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
+  </div>
+  <button type="submit" class="btn btn-primary" style="margin-top:2%;width:96%">SUBMIT</button>
+</form>
+    </div>
+  </div>
+
+</div>
+</div>
+
+{% endblock %}
